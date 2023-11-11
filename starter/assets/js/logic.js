@@ -7,9 +7,11 @@ var initialsEl = document.querySelector("#initials");
 var feedbackEl = document.querySelector("#feedback");
 
 
-var currentQuestionI = 0;
+var currentQuestionI = {}
 var time = questionsEl.length * 15;
 var timerId;
+var score = 0;
+
 
 
 
@@ -26,6 +28,7 @@ function startQuiz() {
     timerEl.textContent = time;
     getQuestion();
    
+    console.log(landingScreenEl);
 }
 
 function getQuestion(){
@@ -33,6 +36,6 @@ function getQuestion(){
 
     var titleEl = document.getElementById("Question-title");
     titleEl.textContent = currentQuestion.title;
-
+  // clear out any old question choices
     choicesEl.innerHTML = "";
 }
