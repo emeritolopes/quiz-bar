@@ -5,16 +5,27 @@ var startBtn = document.querySelector("#start");
 var questionsEl = document.querySelector("#questions");
 var initialsEl = document.querySelector("#initials");
 var feedbackEl = document.querySelector("#feedback");
-
+var timeEl = document.querySelector("#time");
 
 var currentQuestionI = {}
 var time = questionsEl.length * 15;
 var timerId;
 var score = 0;
+var secondsLeft = 60;
 
+// creating the time function
+function setTime() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft + "seconds";
+    
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
 
-
-
+            sendMessage();
+        }
+    }, 1000);
+}
 
 function startQuiz() {
     
@@ -26,9 +37,11 @@ function startQuiz() {
     timerId = setInterval(clockTick, 1000);
 
     timerEl.textContent = time;
+
+   
     getQuestion();
    
-    console.log(landingScreenEl);
+    
 }
 
 function getQuestion(){
@@ -36,6 +49,6 @@ function getQuestion(){
 
     var titleEl = document.getElementById("Question-title");
     titleEl.textContent = currentQuestion.title;
-  // clear out any old question choices
-    choicesEl.innerHTML = "";
+ 
+
 }
